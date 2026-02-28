@@ -1,6 +1,3 @@
-<!-- The "theme of website", here all the main content for page. other docs will have content specific for a specific
- page.  -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +14,6 @@
 			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 			crossorigin="anonymous"
 	/>
-	<!-- Things that are inbetween brackets w/ % => Can be overridden by child templates.
-	 Any blocks that are defined in this base template child templates are able to change -->
 	<title>{% block title %} Home {% endblock %}</title>
 </head>
 <body>
@@ -33,25 +28,32 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbar">
 		<div class="navbar-nav">
-			<a class="nav-item nav-link" id="=login" href="/login">Login</a>
-			<a class="nav-item nav-link" id="=signUp" href="/sign-up">Sign Up</a>
-			<a class="nav-item nav-link" id="=logout" href="/logout">Logout</a>
-			<a class="nav-item nav-link" id="=home" href="/">Home</a>
+			<a class="nav-item nav-link" id="login" href="/login">Login</a>
+			<a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+			<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+			<a class="nav-item nav-link" id="home" href="/">Home</a>
 		</div>
 	</div>
 </nav>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+		{% for category, message in messages %}
+			<div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+
 <div class="container">
-	{# The block is named: content. Anything thats in here will be renderd with base.html when
-renderd BUT also let s me override anything inside the block.#}
 	{% block content %}
-
 	{% endblock %}
-
 </div>
 
-
-<!-- bootstrap scripts, have to be in the end!!-->
 <script
 		src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -64,10 +66,3 @@ renderd BUT also let s me override anything inside the block.#}
 ></script>
 <script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"
-></script>
-
-
-</body>
-</html>
