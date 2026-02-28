@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 db = SQLAlchemy()
 DB_NAME = 'database.db'
@@ -18,5 +19,17 @@ def create_app():
 	
 	app.register_blueprint(view, url_prefix='/')  # Register the view blueprint with the app
 	app.register_blueprint(auth, url_prefix='/')  # Register the auth blueprint with the app
+	#from website import models
+	from .models import User, Note, AuthenticationToken
+	# Import the User and Note models to create the database tables
+	
+	create_database(app)
 	
 	return app
+
+
+def create_database(app):
+    if not path.exists('website/' + DB_NAME):
+        with app.app_context():
+            db.create_all()
+        print('Created Database!')
