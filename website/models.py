@@ -1,4 +1,4 @@
-from . import db  #from the current package, import the db object that we created in __init__.py
+from . import db  # from the current package, import the db object that we created in __init__.py
 
 from flask_login import UserMixin  # import UserMixin from flask_login,
 # which provides default implementations for user authentication methods
