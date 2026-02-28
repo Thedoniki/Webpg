@@ -1,0 +1,28 @@
+in static folder you can add
+images, css, js files and other static files that you want to use in your website.
+For example, you can create a folder named "images" and add your images there, then
+you can use them in your HTML files like this:
+<img src="/static/images/your-image.jpg" alt="Your Image">
+You can also create a folder named "css" and add your CSS files there, then you can link them in your HTML files like this:
+<link rel="stylesheet" href="/static/css/your-style.css">
+Similarly, you can create a folder named "js" and add your JavaScript files there,
+then you can link them in your HTML files like this:
+<script src="/static/js/your-script.js"></script>
+Make sure to organize your static files in a way that makes it easy to manage and maintain your website.
+You can create subfolders within the static folder to further categorize
+your files if needed. For example, you can have a folder named "fonts" for your font files, or a folder named
+"videos" for your video files. Just remember to update the paths in your HTML files accordingly when you add new static files.
+
+to load them to a html file with jinja you write something like this:
+<script type="text/javascript" src="{{ url_for('static', filename='js/your-script.js') }}"></script>
+This will ensure that the correct path to your static files is generated, regardless of where your HTML
+files are located in your project structure.
+
+
+whenever i have {{}} <- means that we are going to write a python expression that will be evaluated and the result will be inserted into the HTML.
+In this case, we are using the url_for function to generate the correct URL for our static files. The url_for function takes two arguments:
+the first is the name of the endpoint (in this case, 'static'), and the second is a keyword argument that specifies the filename of the static
+file we want to load. By using url_for,
+we can ensure that our static files are correctly linked in our HTML, regardless of where our HTML files are located in our project structure.
+
+a little bit more info: https://youtu.be/dam0GPOAvVI?si=jdvljVS1Xrj8j-UV&t=1815
